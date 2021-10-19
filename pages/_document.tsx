@@ -1,5 +1,6 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Head from 'next/head';
+import Document, { Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 interface Props {
@@ -14,7 +15,7 @@ export default class MyDocument extends Document<Props> {
 		try {
 			ctx.renderPage = () =>
 				originalRenderPage({
-					enhanceApp: (App: any) => (props: Props) => sheet.collectStyles(<App {...props} />)
+					enhanceApp: (App: any) => (props: Props) => sheet.collectStyles(<App {...props} />),
 				});
 
 			const initialProps = await Document.getInitialProps(ctx);
@@ -25,7 +26,7 @@ export default class MyDocument extends Document<Props> {
 						{initialProps.styles}
 						{sheet.getStyleElement()}
 					</>
-				)
+				),
 			};
 		} finally {
 			sheet.seal();
@@ -34,7 +35,7 @@ export default class MyDocument extends Document<Props> {
 
 	render() {
 		return (
-			<html lang="en">
+			<Html lang="en">
 				<Head>
 					<meta charSet="utf-8" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -64,7 +65,7 @@ export default class MyDocument extends Document<Props> {
 					<Main />
 					<NextScript />
 				</body>
-			</html>
+			</Html>
 		);
 	}
 }

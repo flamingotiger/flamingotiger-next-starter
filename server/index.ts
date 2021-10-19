@@ -12,8 +12,7 @@ app.prepare().then(() => {
 
 	server.all('*', (req: Request, res: Response) => handle(req, res));
 
-	server.listen(port, (err: any) => {
-		if (err) throw err;
+	server.listen(port, () => {
 		// tslint:disable-next-line:no-console
 		console.log(`🚀 Ready on http://localhost:${port} as ${dev ? 'development' : process.env.NODE_ENV}`);
 	});
