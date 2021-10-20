@@ -1,51 +1,36 @@
-import { action, ActionType, createReducer } from 'typesafe-actions';
-
-export enum ModalActionType {
-	SHOW_MODAL = 'SHOW_MODAL',
-	HIDE_MODAL = 'HIDE_MODAL',
-	TOGGLE_MODAL = 'TOGGLE_MODAL',
-	CLEAR_MODAL = 'CLEAR_MODAL'
-}
-
-export const hideModal = (unique: string) => action(ModalActionType.HIDE_MODAL, { unique });
-export const showModal = (unique: string) => action(ModalActionType.SHOW_MODAL, { unique });
-export const toggleModal = (unique: string) => action(ModalActionType.TOGGLE_MODAL, { unique });
-export const clearModal = () => action(ModalActionType.CLEAR_MODAL);
-
-export const actionCreator = {
-	hideModal,
-	showModal,
-	toggleModal,
-	clearModal
-};
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '.';
 
 export interface ModalState {
-	modals: string[];
+	modal: null;
 }
 
-export type ModalAction = ActionType<typeof actionCreator>;
+const name = 'MODAL';
 
 export const initialState: ModalState = {
-	modals: []
+	modal: null,
 };
 
-export default createReducer<ModalState, ModalAction>(initialState, {
-	[ModalActionType.HIDE_MODAL]: (state, action) => {
-		return { ...state, modals: state.modals.filter(m => m !== action.payload.unique) };
+const slice = createSlice({
+	name,
+	initialState,
+	reducers: {
+		add: (state, { payload }: PayloadAction<{ modal: null }>) => {
+			state.modal = payload.modal;
+		},
+		remove: (state) => {
+			state.modal = null;
+		},
+		clear: (state) => {
+			state.modal = null;
+		},
 	},
-	[ModalActionType.SHOW_MODAL]: (state, action) => {
-		return { ...state, modals: [...state.modals, action.payload.unique] };
-	},
-	[ModalActionType.TOGGLE_MODAL]: (state, action) => {
-		let modals = [];
-		if (state.modals.some(m => m === action.payload.unique)) {
-			modals = state.modals.filter(m => m !== action.payload.unique);
-		} else {
-			modals = [...state.modals, action.payload.unique];
-		}
-		return { ...state, modals };
-	},
-	[ModalActionType.CLEAR_MODAL]: state => {
-		return { ...state, modals: [] };
-	}
 });
+
+export const modalName = slice.name;
+export const modalReducer = slice.reducer;
+export const modalAction = slice.actions;
+
+export const modalSelector = (state: RootState) => state.modal;
+
+export default slice;
