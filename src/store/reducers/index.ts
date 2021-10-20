@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { combineReducers } from 'redux';
 import store from 'src/store';
-import { modalReducer } from './modal';
 
-const rootReducer = combineReducers({ modal: modalReducer });
+const rootReducer = combineReducers({});
 
 export default rootReducer;
 
