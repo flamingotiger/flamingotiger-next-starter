@@ -1,4 +1,4 @@
-const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants');
+// const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants');
 const dotenv = require('dotenv');
 const withOptimizedImages = require('next-optimized-images');
 // const withOffline = require('next-offline'); // webpack5 호환하지 않음
@@ -9,26 +9,26 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 dotenv.config();
 
-const { BACKEND_BASE_URL } = process.env;
+// const { BACKEND_BASE_URL } = process.env;
 
 const nextConfig = (phase) => {
-	const isDev = phase === PHASE_DEVELOPMENT_SERVER;
-	const isProd = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING !== '1';
-	const isStaging = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING === '1';
+	// const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+	// const isProd = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING !== '1';
+	// const isStaging = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING === '1';
 
-	const env = {
-		BACKEND_BASE_URL: (() => {
-			if (isDev || isProd || isStaging) return BACKEND_BASE_URL;
-			return 'BACKEND_BASE_URL:not (isDev,isProd && !isStaging,isProd && isStaging)';
-		})(),
-	};
+	// const env = {
+	// 	BACKEND_BASE_URL: (() => {
+	// 		if (isDev || isProd || isStaging) return BACKEND_BASE_URL;
+	// 		return 'BACKEND_BASE_URL:not (isDev,isProd && !isStaging,isProd && isStaging)';
+	// 	})(),
+	// };
 	return {
 		typescript: {
 			ignoreDevErrors: true,
 		},
 		target: 'serverless',
 		webpack5: true, // webpack5: false면 4버전
-		env,
+		// env,
 		webpack(config, { webpack }) {
 			config.resolve.modules.push(__dirname);
 			config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//));
