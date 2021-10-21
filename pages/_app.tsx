@@ -1,11 +1,9 @@
 import App from 'next/app';
 import React from 'react';
-import { Provider } from 'react-redux';
-import withRedux from 'next-redux-wrapper';
 import GlobalStyles from 'src/styles/global-styles';
 import { ThemeProvider } from 'src/styles/themed-components';
 import theme from 'src/styles/theme';
-import store from '@store';
+import store from '@store/index';
 import Head from 'next/head';
 
 class ReactApp extends App<any> {
@@ -42,14 +40,12 @@ class ReactApp extends App<any> {
 					<meta name="theme-color" content="#ffffff" />
 				</Head>
 				<ThemeProvider theme={theme}>
-					<Provider store={store}>
-						<Component {...pageProps} />
-						<GlobalStyles />
-					</Provider>
+					<Component {...pageProps} />
+					<GlobalStyles />
 				</ThemeProvider>
 			</>
 		);
 	}
 }
 
-export default withRedux(() => store, { debug: false })(ReactApp);
+export default store.withRedux(ReactApp);

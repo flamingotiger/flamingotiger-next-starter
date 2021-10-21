@@ -1,11 +1,8 @@
-import { useDispatch } from 'react-redux';
 import { combineReducers } from 'redux';
-import store from 'src/store';
+import { userReducer } from './user';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({ user: userReducer });
 
 export default rootReducer;
 
-export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>(); // Export a hook that can be reused to resolve types
 export type RootState = ReturnType<typeof rootReducer>;
