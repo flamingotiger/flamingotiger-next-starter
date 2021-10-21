@@ -1,5 +1,5 @@
 import baseStyled, { css, CSSProp, ThemedStyledInterface } from 'styled-components';
-import { IndexKey } from 'src/config/default';
+import { IndexKey } from '@utils/default';
 import { color, layout } from './variable';
 
 const sizes: IndexKey<number> = {

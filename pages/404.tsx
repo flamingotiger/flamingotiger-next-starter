@@ -12,18 +12,15 @@ const Error = {
 		height: 100vh;
 	`,
 	Title: styled.h3`
-		color: #fdd835;
 		text-align: center;
 		font-size: 2rem;
 		font-weight: bold;
 		margin-bottom: 1rem;
 	`,
 	Text: styled.div`
-		color: #fdd835;
 		text-align: center;
 	`,
 	Button: styled.a`
-		background-color: #fdd835;
 		width: 10rem;
 		height: 2rem;
 		border-radius: 2rem;
@@ -36,7 +33,7 @@ const Error = {
 	`
 };
 
-const Custom404: I18nPage = () => {
+const Custom404 = () => {
 	return (
 		<Error.Wrapper>
 			<Head>

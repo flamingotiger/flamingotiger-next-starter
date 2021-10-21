@@ -10,6 +10,21 @@
         "displayName": true,
         "preprocess": false
       }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "@services": "./src/services",
+          "@utils": "./src/utils",
+          "@hooks": "./src/hooks",
+          "@components": "./src/components",
+          "@store": "./src/store"
+        }
+      }
     ]
   ]
 }

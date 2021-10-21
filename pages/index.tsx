@@ -1,14 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
-import HomeContainer from 'src/route/main/Home/HomeContainer';
+import Home from 'src/views/Home';
 
-const Home = () => {
+const Index = () => {
 	return (
 		<div>
 			<Head>
 				<title>Home</title>
 			</Head>
-			<HomeContainer />
+			<Home />
 		</div>
 	);
 };
@@ -24,4 +24,4 @@ export async function getStaticProps() {
 	return { props: {} };
 }
 
-export default Home;
+export default Index;

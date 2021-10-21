@@ -2,10 +2,10 @@ import App from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
-import GlobalStyles from '../src/styles/global-styles';
-import { ThemeProvider } from '../src/styles/themed-components';
-import theme from '../src/styles/theme';
-import store from '../src/store';
+import GlobalStyles from 'src/styles/global-styles';
+import { ThemeProvider } from 'src/styles/themed-components';
+import theme from 'src/styles/theme';
+import store from '@store';
 import Head from 'next/head';
 
 class ReactApp extends App<any> {
