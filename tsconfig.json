@@ -24,12 +24,23 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "paths": {
-      "@services/*": ["src/services/*"],
-      "@utils/*": ["src/utils/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@components/*": ["src/components/*"],
-      "@store/*": ["src/store/*"],
-    }
+      "@services/*": [
+        "src/services/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@store/*": [
+        "src/store/*"
+      ]
+    },
+    "incremental": true
   },
   "exclude": [
     "dist",
