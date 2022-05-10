@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 /** Axios instance
  * 	initial axios setting
  */
- const instance = axios.create({
+const instance = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_BACKEND_SERVER,
 	timeout: 1000,
 	withCredentials: true
@@ -14,8 +14,8 @@ const { interceptors } = instance;
 instance.interceptors.request.use(
 	(config: AxiosRequestConfig) => {
 		// Config setting
-		config.headers['Content-Type'] = 'application/json; charset=utf-8';
-		config.headers['Access-Control-Allow-Origin'] = process.env.NEXT_PUBLIC_BACKEND_SERVER;
+		(config.headers as any)['Content-Type'] = 'application/json; charset=utf-8';
+		(config.headers as any)['Access-Control-Allow-Origin'] = process.env.NEXT_PUBLIC_BACKEND_SERVER;
 		// config.headers.Authorization = `Bearer ${token}`;
 		return config;
 	},
