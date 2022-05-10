@@ -1,8 +1,6 @@
 // const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants');
 const dotenv = require('dotenv');
 const withOptimizedImages = require('next-optimized-images');
-// const withOffline = require('next-offline'); // webpack5 호환하지 않음
-// export.modules = withOffline(...);
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
 	enabled: process.env.ANALYZE === 'true'
 });
@@ -27,7 +25,6 @@ const nextConfig = phase => {
 		typescript: {
 			ignoreDevErrors: true
 		},
-		target: 'serverless',
 		webpack5: true, // webpack5: false면 4버전
 		// env,
 		webpack(config, { webpack }) {
@@ -42,7 +39,7 @@ const nextConfig = phase => {
 				...config.resolve
 			};
 			config.resolve.modules.push(__dirname);
-			config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//));
+			config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /\/__tests__\// }));
 			return config;
 		}
 	};
