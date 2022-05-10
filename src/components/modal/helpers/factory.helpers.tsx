@@ -33,8 +33,8 @@ function factory({ Component, ...config }: Factory) {
 			return Component
 				? ReactDOM.render(
 						<Modal visible={visible} afterClose={afterClose}>
-						<Component {...renderConfig} />
-					</Modal>,
+							<Component {...renderConfig} />
+						</Modal>,
 						div
 				  )
 				: new Error('컴포넌트가 없습니다.');
