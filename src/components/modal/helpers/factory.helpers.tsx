@@ -17,7 +17,7 @@ function factory({ Component, ...config }: Factory) {
 	const div = document.createElement('div');
 	document.body.appendChild(div);
 
-	let currentConfig: Factory = {
+	const currentConfig: Factory = {
 		...config,
 		visible: true,
 		afterClose: () => {
@@ -25,7 +25,7 @@ function factory({ Component, ...config }: Factory) {
 				currentConfig.onAfterClose();
 			}
 			destroy(config);
-		},
+		}
 	};
 
 	const render = ({ visible, afterClose, ...renderConfig }: Factory) => {
@@ -33,8 +33,8 @@ function factory({ Component, ...config }: Factory) {
 			return Component
 				? ReactDOM.render(
 						<Modal visible={visible} afterClose={afterClose}>
-							<Component {...renderConfig} />
-						</Modal>,
+						<Component {...renderConfig} />
+					</Modal>,
 						div
 				  )
 				: new Error('컴포넌트가 없습니다.');
@@ -44,7 +44,7 @@ function factory({ Component, ...config }: Factory) {
 	const update = (newConfig: Factory) => {
 		config = {
 			...currentConfig,
-			...newConfig,
+			...newConfig
 		};
 		render(config);
 	};
@@ -79,7 +79,7 @@ function factory({ Component, ...config }: Factory) {
 					currentConfig.onAfterClose();
 				}
 				destroy(config);
-			},
+			}
 		};
 		render(config);
 	};
@@ -91,7 +91,7 @@ function factory({ Component, ...config }: Factory) {
 
 	return {
 		destroy: close,
-		update,
+		update
 	};
 }
 

@@ -26,7 +26,7 @@ const Modal: React.FC<ModelProps> = ({ visible = true, afterClose, children }) =
 				<ContentWrapper>
 					<CustomBox>
 						{React.Children.count(children) > 0 &&
-							React.Children.map(children, (child) => {
+							React.Children.map(children, child => {
 								const item = child as ReactElement<PropsWithChildren<{ onClosed: () => void }>>;
 								return React.cloneElement(item, { onClosed: onClosedHandler });
 							})}
@@ -75,7 +75,7 @@ const ContentWrapper = styled.div`
 
 const CustomBox = styled.div`
 	box-shadow: 0 0.625rem 0.625rem rgba(0, 0, 0, 0.2);
-    background-color: white;
+	background-color: white;
 `;
 
 export default Modal;
